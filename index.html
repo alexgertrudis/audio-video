@@ -25,14 +25,25 @@
     <div class="controlButtons">
         <!-- Engeguem l'àudio en fer click. -->
         <button type="button" onclick="engegarAudio();">
-            <span class="material-symbols-outlined">
-                play_arrow
-            </span>
+            <svg viewBox="0 0 100 60" width="100" height="60">
+                <rect x="15" y="10" width="70" height="40" stroke="black" stroke-width="2" fill="white" />
+                <polygon points="40,20 40,40 65,30" fill="black" />
+            </svg>
+        </button>
+        <button type="button" onclick="pausarAudio();">
+            <svg viewBox="0 0 100 60" width="100" height="60">
+                <rect x="15" y="10" width="70" height="40" stroke="black" stroke-width="2" fill="white" />
+                <rect x="35" y="18" width="8" height="25" stroke="black" stroke-width="2" fill="black" />
+                <rect x="55" y="18" width="8" height="25" stroke="black" stroke-width="2" fill="black" />
+            </svg>
         </button>
     </div>
-    <!-- Recordeu que heu de seguir les lleis en matèria de propietat intelectual.
-         En aquest cas, cal nomenar i enllaçar l'autor i el tipus de llicència. 
-    -->
+    
+    <div class="volumeControl">
+        <label for="volume">Volum:</label>
+        <input type="range" id="volume" min="0" max="1" step="0.1" value="1" oninput="cambiarVolumen(this.value);">
+    </div>
+
     <div style="padding: 1em; margin-bottom: 1em; border: 1px; background-color: #eee;">
         "<a rel="nofollow" href="https://timtaj.com/royalty-free-music/background-technology">Background Technology</a>" 
         by <a rel="nofollow" href="https://freemusicarchive.org/music/timtaj/contact">Taj Tim</a> 
@@ -53,6 +64,16 @@
             var waves = document.querySelectorAll('.wave');
             for (var i = 0; i < waves.length; i++) {
                 waves[i].classList.add('playing');
+            }
+        }
+
+        function pausarAudio() {
+            // pausem audio
+            audio.pause();
+            // eliminem animació
+            var waves = document.querySelectorAll('.wave');
+            for (var i = 0; i < waves.length; i++) {
+                waves[i].classList.remove('playing');
             }
         }
 
